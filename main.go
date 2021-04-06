@@ -1,11 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"log"
 
-// Satelites
-var kenobi = [2]int{-500, 200}
-var skywalker = [2]int{100, -100}
-var sato = [2]int{500, 100}
+	"github.com/juancsr/quasar-attack-operation/routers"
+)
 
 // input: Distance to the issuer from the satellite
 // output: x and y issuer coordinate
@@ -20,5 +19,6 @@ func GetMessage(messages ...[]string) (msg string) {
 }
 
 func main() {
-	fmt.Println("let's beging")
+	log.Println("-- Launching app --")
+	routers.Start()
 }
