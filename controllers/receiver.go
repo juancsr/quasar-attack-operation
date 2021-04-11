@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"errors"
-	"fmt"
 	"log"
 
 	"github.com/juancsr/quasar-attack-operation/models"
@@ -26,7 +25,6 @@ func DecriptMessage(satellites []models.SatelliteRequest) map[string]interface{}
 	decriptedInfo["y"] = y
 
 	decriptedInfo["message"] = utils.GetMessage(messages...)
-
 	return decriptedInfo
 }
 
@@ -43,7 +41,6 @@ func MultipleDecriptMessage(updatedRequest models.SatelliteRequest) map[string]i
 	}
 
 	requests := models.GetAllSatelliteRequest()
-	fmt.Println(requests)
 	decriptedInfo := DecriptMessage(requests)
 	return decriptedInfo
 }

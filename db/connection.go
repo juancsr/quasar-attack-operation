@@ -2,7 +2,6 @@ package db
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 
@@ -26,7 +25,6 @@ func init() {
 	DB := os.Getenv("DB")
 	CLUSTER := os.Getenv("CLUSTER")
 	URI := "mongodb+srv://" + USER + ":" + PASSWORD + "@" + CLUSTER + "/" + DB + "?retryWrites=true&w=majority"
-	fmt.Println(URI)
 	clientOptions := options.Client().ApplyURI(URI)
 	client, err = mongo.Connect(CTX, clientOptions)
 
@@ -37,7 +35,6 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("connected sucefully")
 }
 
 // cliente de db
