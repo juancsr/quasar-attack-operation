@@ -1,13 +1,9 @@
 package constants
 
-var Satellites map[string][2]float32
+import "github.com/juancsr/quasar-attack-operation/models"
 
-func init() {
-	// Satelites
-	_satellites := map[string][2]float32{
-		"kenobi":    {-500.0, 200.0},
-		"skywalker": {100.0, -100.0},
-		"sato":      {500.0, 100.0},
-	}
-	Satellites = _satellites
+var Satellites = map[string]models.Circle{
+	"kenobi":    models.Circle{X: -500, Y: -200},
+	"skywalker": models.Circle{X: 100, Y: -100},
+	"sato":      models.Circle{X: 500, Y: 100},
 }
