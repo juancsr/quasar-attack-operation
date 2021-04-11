@@ -7,54 +7,67 @@ import (
 	"github.com/juancsr/quasar-attack-operation/models"
 )
 
-var body struct {
-	Satellites []models.Satellite `json:"satellites" binding:"required"`
+// common 404 error handler
+var errorResponse = func(c *gin.Context) {
+	if r := recover(); r != nil {
+		c.JSON(constants.NotFound_404, gin.H{"message": r})
+	}
 }
 
-// common 404 error handler
-var errorRespnse = func(c *gin.Context, r interface{}) { c.JSON(constants.NotFound_404, gin.H{"message": r}) }
+// handle the common response of /topsecret and /topsecret/{satellite_name}
+// by assign the values of decriptedInfo map into a Mothership struct
+func decriptedInfoResponseHandler(decriptedInfo map[string]interface{}) (mothership models.MotherShip) {
+	mothership = models.MotherShip{
+		Position: models.Position{X: decriptedInfo["x"].(float32), Y: decriptedInfo["y"].(float32)},
+		Message:  decriptedInfo["message"].(string),
+	}
+	return
+}
 
-// TopSecret endpoint handler
+// /topsecret endpoint handler
 func TopSecret(c *gin.Context) {
-	var response models.MotherShip
+	var body struct {
+		Satellites []models.SatelliteRequest `json:"satellites" binding:"required"`
+	}
 
 	if c.ShouldBind(&body) != nil {
 		c.AbortWithStatus(constants.NotFound_404)
 	}
 
-	defer func() {
-		if r := recover(); r != nil {
-			errorRespnse(c, r)
-		}
-	}()
+	defer errorResponse(c)
 
 	decriptedInfo := controllers.DecriptMessage(body.Satellites)
-
-	mothership := models.MotherShip{
-		Position: models.Position{X: decriptedInfo["x"].(float32), Y: decriptedInfo["y"].(float32)},
-		Message:  decriptedInfo["message"].(string),
-	}
-
-	response = mothership
+	response := decriptedInfoResponseHandler(decriptedInfo)
 
 	c.JSON(constants.OK_200, response)
 }
 
+// /topsecret/{satellite_name} handler
 func MultipleTopSecret(c *gin.Context) {
+	var satelliteRequests models.SatelliteRequest
 
-	if c.ShouldBind(&body) != nil {
-		c.AbortWithStatus(constants.NotFound_404)
-	}
+	defer errorResponse(c)
 
 	satellite_name := c.Param("satellite_name")
 
-	defer func() {
-		if r := recover(); r != nil {
-			errorRespnse(c, r)
+	if c.Request.Method == "POST" {
+		var body struct {
+			Distance float32  `json:"distance" binding:"required"`
+			Message  []string `json:"message" binding:"required"`
 		}
-	}()
 
-	controllers.MultipleDecriptMessage(satellite_name)
+		if c.ShouldBind(&body) != nil {
+			c.AbortWithStatus(constants.NotFound_404)
+		}
+		satelliteRequests = models.SatelliteRequest{
+			Name:     satellite_name,
+			Distance: body.Distance,
+			Message:  body.Message,
+		}
+	}
 
-	c.JSON(constants.OK_200, "ok")
+	decriptedInfo := controllers.MultipleDecriptMessage(satelliteRequests)
+	response := decriptedInfoResponseHandler(decriptedInfo)
+
+	c.JSON(constants.OK_200, response)
 }

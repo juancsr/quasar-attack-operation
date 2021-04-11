@@ -1,14 +1,16 @@
 package controllers
 
 import (
+	"errors"
 	"fmt"
+	"log"
 
 	"github.com/juancsr/quasar-attack-operation/models"
 	"github.com/juancsr/quasar-attack-operation/utils"
 )
 
 // Decript the message using the satellites and the message
-func DecriptMessage(satellites []models.Satellite) map[string]interface{} {
+func DecriptMessage(satellites []models.SatelliteRequest) map[string]interface{} {
 	var decriptedInfo = make(map[string]interface{})
 
 	var distances = []float32{}
@@ -19,9 +21,9 @@ func DecriptMessage(satellites []models.Satellite) map[string]interface{} {
 		messages = append(messages, satellite.Message)
 	}
 
-	//x, y := utils.GetLocation(distances...)
-	decriptedInfo["x"] = float32(1.0)
-	decriptedInfo["y"] = float32(2.0)
+	x, y := utils.GetLocation(distances...)
+	decriptedInfo["x"] = x
+	decriptedInfo["y"] = y
 
 	decriptedInfo["message"] = utils.GetMessage(messages...)
 
@@ -31,6 +33,17 @@ func DecriptMessage(satellites []models.Satellite) map[string]interface{} {
 // Check if the request already exist in the db.
 // If not exist, then it will create it
 // otherwise the data will be updated
-func MultipleDecriptMessage(satellite_name string) {
-	fmt.Println(satellite_name)
+func MultipleDecriptMessage(updatedRequest models.SatelliteRequest) map[string]interface{} {
+	if updatedRequest.Name != "" {
+		_, err := models.GetOneRequestBySatelliteName(updatedRequest)
+		if err != nil {
+			log.Println(err)
+			log.Panic(errors.New("not enough information"))
+		}
+	}
+
+	requests := models.GetAllSatelliteRequest()
+	fmt.Println(requests)
+	decriptedInfo := DecriptMessage(requests)
+	return decriptedInfo
 }
