@@ -4,6 +4,8 @@ import (
 	"strings"
 )
 
+// uses the message map to build the message in accordance with the map's keys
+// return the message string
 func buildMessageFromMap(mappedWords map[string]int) string {
 	message := make([]string, len(mappedWords))
 	for key, value := range mappedWords {
