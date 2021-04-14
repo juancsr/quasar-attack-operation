@@ -46,7 +46,7 @@ Once you're on the root project folder you need to download all of the dependeci
 
 `$ go mod download`
 
-Just in case, run the `tidy` option, just to be sure that remove unused packages:
+Just in case, run the `tidy` option, just to be sure to remove all of unused packages:
 
 `$ go mod tidy`
 
@@ -57,7 +57,7 @@ If the two upper commands were right, run the main file to start the gin server:
 ### Running by docker-compose
 ___
 Make sure you have docker and docker compose installed on your machine.
- (You can very this by simple running the version commands for the two of them):
+ (You can verify this by simple running the version commands for the two of them):
 
  ```
  $ docker version
