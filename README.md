@@ -101,26 +101,26 @@ $ docker run -ti --rm  \
     cosmtrek/air
 ```
 
-**Note**: _This is project needs environment variables, so make sure you havo those into your machine_
+**Note**: _This project needs environment variables, so make sure you havo those into your machine_
 
 
 ### Env variables
 ___
 The list of environment variables that should be on your machine are:
 
-- **USER**
+- **DB_USER**
 
 This is the user for the authentication database 
 
-- **PASSWORD**
+- **DB_PASSWORD**
 
 This is the user's password for the authentication database 
 
-- **DB**
+- **DB_NAME**
 
 The name of the mongodb database to connect
 
-- **CLUSTER**
+- **DB_CLUSTER**
 
 The url for the mongodb database to connect
 
