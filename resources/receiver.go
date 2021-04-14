@@ -24,7 +24,16 @@ func decriptedInfoResponseHandler(decriptedInfo map[string]interface{}) (mothers
 	return
 }
 
-// /topsecret endpoint handler
+// TopSecret godoc
+// @Summary Top secret endpoint
+// @Description trilateration point
+// @Accept  json
+// @Produce  json
+// @Param satellite_name body models.SatelliteRequest true "Satelline name"
+// @Success 200 {object} models.MotherShip
+// @Failure 400,404 {object}  models.MotherShip
+// @Failure default {object}  models.MotherShip
+// @Router /topsecret [post]
 func TopSecret(c *gin.Context) {
 	var body struct {
 		Satellites []models.SatelliteRequest `json:"satellites" binding:"required"`
@@ -42,7 +51,17 @@ func TopSecret(c *gin.Context) {
 	c.JSON(constants.OK_200, response)
 }
 
-// /topsecret/{satellite_name} handler
+// MultipleTopSecret godoc
+// @Summary MultipleTopSecret
+// @Description get string by ID
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Param satellite_name path int true "Satelline name"
+// @Success 200 {object} models.MotherShip
+// @Failure 400,404 {object}  models.MotherShip
+// @Failure default {object}  models.MotherShip
+// @Router /topscret/{satellite_name} [post][get]
 func MultipleTopSecret(c *gin.Context) {
 	var satelliteRequests models.SatelliteRequest
 

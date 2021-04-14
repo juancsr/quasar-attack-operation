@@ -5,6 +5,7 @@ type Position struct {
 	Y float32 `json:"y"`
 }
 
+// NotherShip represents the position and message after decript
 type MotherShip struct {
 	Position Position `json:"position"`
 	Message  string   `json:"message"`

@@ -1,0 +1,109 @@
+basePath: /
+definitions:
+  models.MotherShip:
+    properties:
+      message:
+        type: string
+      position:
+        $ref: '#/definitions/models.Position'
+    type: object
+  models.Position:
+    properties:
+      x:
+        type: number
+      "y":
+        type: number
+    type: object
+  models.SatelliteRequest:
+    properties:
+      distance:
+        type: number
+      message:
+        items:
+          type: string
+        type: array
+      name:
+        type: string
+    required:
+    - distance
+    - message
+    - name
+    type: object
+host: quasar-attack-operation.herokuapp.com
+info:
+  contact:
+    email: juancsr@pm.me
+    name: API Support
+  description: MELI Technical Challenge
+  license:
+    name: GNU GENERAL PUBLIC LICENSE V.30
+    url: https://fsf.org
+  termsOfService: http://swagger.io/terms/
+  title: Quasar Attack Operation API
+  version: "1.0"
+paths:
+  /topscret/{satellite_name}:
+    post:
+      consumes:
+      - application/json
+      description: get string by ID
+      operationId: get-string-by-int
+      parameters:
+      - description: Satelline name
+        in: path
+        name: satellite_name
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.MotherShip'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MotherShip'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MotherShip'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/models.MotherShip'
+      summary: MultipleTopSecret
+  /topsecret:
+    post:
+      consumes:
+      - application/json
+      description: trilateration point
+      parameters:
+      - description: Satelline name
+        in: body
+        name: satellite_name
+        required: true
+        schema:
+          $ref: '#/definitions/models.SatelliteRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.MotherShip'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MotherShip'
+        "404":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MotherShip'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/models.MotherShip'
+      summary: Top secret endpoint
+swagger: "2.0"
