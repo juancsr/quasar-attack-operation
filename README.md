@@ -16,6 +16,10 @@ _{{url}}_ Refers to the url where the project was deployed or is running
 2. [POST] {{url}}/topsecret/sato
 3. [GET] {{url}}/topsecret/sato
 
+**Postman**
+
+Use the [Postman collection](https://github.com/juancsr/quasar-attack-operation/blob/main/Postman%20collection/quasar%20attack%20operation.postman_collection.json) to get easy access to all the endpoints and the environments
+
 **Examples**
 
 Localhost:
