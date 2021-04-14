@@ -36,6 +36,10 @@ https://quasar-attack-operation.herokuapp.com/topsecret/sato
 
 https://quasar-attack-operation.herokuapp.com/topsecret/sato
 
+## Swagger
+
+Swagger documentation for the API can be found here: https://app.swaggerhub.com/apis/juancsr/quasar-attack_operation_api/1.0
+
 ## How to run it
 ___
 First, clone the repository
