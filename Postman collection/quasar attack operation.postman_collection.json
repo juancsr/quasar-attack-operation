@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "97d90f09-f5a8-4758-adbe-87d1ff584d0f",
+		"name": "quasar attack operation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "topsecret",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"satellites\": [\n        {\n            \"name\": \"kenobi\",\n            \"distance\": 100.0,\n            \"message\": [\n                \"este\",\n                \"\",\n                \"\",\n                \"mensaje\",\n                \"\"\n            ]\n        },\n        {\n            \"name\": \"skywalker\",\n            \"distance\": 115.5,\n            \"message\": [\n                \"\",\n                \"es\",\n                \"\",\n                \"\",\n                \"secreto\"\n            ]\n        },\n        {\n            \"name\": \"sato\",\n            \"distance\": 142.7,\n            \"message\": [\n                \"este\",\n                \"\",\n                \"un\",\n                \"\",\n                \"\"\n            ]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/topsecret",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"topsecret"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "topsecret gap message test",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"satellites\": [\n        {\n            \"name\": \"kenobi\",\n            \"distance\": 100,\n            \"message\": [\n                \"\",\n                \"este\",\n                \"es\",\n                \"un\",\n                \"mensaje\"\n            ]\n            \n        },\n        {\n            \"name\": \"skywalker\",\n            \"distance\": 115.5,\n            \"message\": [\n                \"este\",\n                \"\",\n                \"un\",\n                \"mensaje\"\n            ]\n            \n        },\n        {\n            \"name\": \"sato\",\n            \"distance\": 142.7,\n            \"message\": [\n                \"\",\n                \"\",\n                \"es\",\n                \"\",\n                \"mensaje\"\n            ]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/topsecret",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"topsecret"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "topsecret with satellite name",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"distance\": 259.0,\n    \"message\": [\"este\", \"\", \"\", \"mensaje\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/topsecret/sato",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"topsecret",
+						"sato"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "topsecret with satellite name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/topsecret/sato",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"topsecret",
+						"sato"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
