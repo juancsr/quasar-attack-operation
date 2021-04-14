@@ -25,6 +25,9 @@ func init() {
 	DB := os.Getenv("DB")
 	CLUSTER := os.Getenv("CLUSTER")
 	URI := "mongodb+srv://" + USER + ":" + PASSWORD + "@" + CLUSTER + "/" + DB + "?retryWrites=true&w=majority"
+	if os.Getenv("MODE") == "development" {
+		URI = "mongodb://" + USER + ":" + PASSWORD + "@" + CLUSTER + "/"
+	}
 	clientOptions := options.Client().ApplyURI(URI)
 	client, err = mongo.Connect(CTX, clientOptions)
 

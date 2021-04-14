@@ -1,0 +1,35 @@
+
+version: '3'
+
+services:
+  db:
+    image: mongo:latest
+    container_name: quasar-attack-operation-db
+    environment:
+      - MONGO_DATA=/data/db
+      - MONGO_LOG_DIR=/var/log/mongodb
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - ${DB_PORT}:27017
+  
+  app:
+    build: .
+    container_name: quasar-attack-operation-app
+    environment: 
+        - USER=${DB_USER}
+        - PASSWORD=${DB_PASSWORD}
+        - DB=${DB_NAME}
+        - CLUSTER=${DB_CLUSTER}
+        - MODE=${MODE}
+    ports:
+      - 9001:8080
+    volumes:
+      - ./:/go/app
+    depends_on: 
+        - db
+
+volumes:
+  mongo_data:
